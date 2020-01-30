@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    container_name: ssdi_6112
+    build: .
+    image: 025221494343.dkr.ecr.us-east-1.amazonaws.com/rileystech:ssdi_6112
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      - .:/code
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+    env_file:
+      - .env

@@ -1,0 +1,46 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+version: 2.1
+jobs:
+  deploy:
+    executor: aws-ecr/default
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "7c:cd:32:bc:4e:5c:6f:96:02:f3:90:f9:17:90:7f:7e"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            aws configure set aws_access_key_id $ACCESS_KEY_ID_ENV_VAR_NAME --profile circleci;
+            aws configure set aws_secret_access_key $SECRET_ACCESS_KEY_ENV_VAR_NAME --profile circleci;
+            aws configure set region $AWS_REGION_ENV_VAR_NAME --profile circleci;
+            AWS_LOGIN_COMMAND=$(aws ecr get-login --no-include-email --profile circleci)
+            ENV_VARS=$(env)
+            ssh $SSH_USER@$SSH_HOST \
+            " \
+            echo \"${ENV_VARS}\" > ./env/${CIRCLE_PROJECT_REPONAME}.env; \
+            ${AWS_LOGIN_COMMAND};\
+            cd scripts; \
+            bash ${CIRCLE_PROJECT_REPONAME}.sh; \
+            docker logs ${CIRCLE_PROJECT_REPONAME};
+            "
+
+workflows:
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
+          aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME
+          aws-secret-access-key: SECRET_ACCESS_KEY_ENV_VAR_NAME
+          context: rileystech-deploy
+          region: AWS_REGION_ENV_VAR_NAME
+          repo: 'rileystech'
+          tag: $CIRCLE_PROJECT_REPONAME
+      - deploy:
+          context: rileystech-deploy
+          requires:
+            - aws-ecr/build-and-push-image
