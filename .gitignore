@@ -324,3 +324,4 @@ $RECYCLE.BIN/
 
 .env
 .idea
+node_modules
