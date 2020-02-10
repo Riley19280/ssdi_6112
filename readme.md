@@ -15,7 +15,6 @@
 I have provided example data files that show the format of the data we are dealing with. The first one is a direct message conversation, and the second is a group chat with 100+ people. The data goes back until around November 2019.
 
 ### Using your own data
-https://www.facebook.com/settings?tab=your_facebook_information
 
 Download your personal Facebook Messenger data [here](https://www.facebook.com/settings?tab=your_facebook_information).
 
