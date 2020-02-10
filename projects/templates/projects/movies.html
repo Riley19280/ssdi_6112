@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+<!--<script src="https://unpkg.com/d3-3d/build/d3-3d.min.js"></script>-->
+<head>
+    <title>Movies</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+{% if movies %}
+<table class="border border-black table-fixed border-collapse mx-auto mt-4">
+    <tr>
+        <th>Title</th>
+        <th>Director</th>
+        <th>Year</th>
+    </tr>
+    {% for movie in movies %}
+    <tr class="border border-black">
+        <td class="px-4 py-1">{{ movie.title }}</td>
+        <td class="px-4 py-1">{{ movie.director }}</td>
+        <td class="px-4 py-1">{{ movie.year_released }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No movies.</p>
+{% endif %}
+</body>
