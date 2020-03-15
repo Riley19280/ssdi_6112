@@ -19,6 +19,8 @@ from django.http import HttpResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('projects/', include('projects.urls')),
+    # path('projects/', include('projects.urls')),
     path('', lambda r: HttpResponse('hello world!'), name='index'),
+    path('', include('accounts.urls')),
+    path('', include('django.contrib.auth.urls')),
 ]
