@@ -40,7 +40,13 @@ workflows:
           region: AWS_REGION_ENV_VAR_NAME
           repo: 'rileystech'
           tag: $CIRCLE_PROJECT_REPONAME
+          branches:
+            only:
+              - master
       - deploy:
           context: rileystech-deploy
+          branches:
+            only:
+              - master
           requires:
             - aws-ecr/build-and-push-image
