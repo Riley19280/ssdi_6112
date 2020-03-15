@@ -22,5 +22,5 @@ urlpatterns = [
     # path('projects/', include('projects.urls')),
     path('', lambda r: HttpResponse('hello world!'), name='index'),
     path('', include('accounts.urls')),
-    path('', include('django.contrib.auth.urls')),
+    path('', include('main.urls')),
 ]
