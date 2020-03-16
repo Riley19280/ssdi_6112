@@ -326,3 +326,4 @@ $RECYCLE.BIN/
 .idea
 node_modules
 media
+ssdi.test.db.sqlite3

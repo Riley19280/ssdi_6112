@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -88,8 +89,23 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
+        'TEST': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'ssdi.test.db.sqlite3',
+            'USER': None,
+            'PASSWORD': None,
+            'HOST': None,
+            'PORT': None,
+        }
     }
 }
+
+if 'test' in sys.argv:
+    # Django doesn't allow for changing the engine for the test environment by default, so we override if we are testing
+    DATABASES['default']['ENGINE'] = DATABASES['default']['TEST']['ENGINE']
+
+    if 'keepdb' in sys.argv:
+        DATABASES['default']['TEST']['NAME'] = os.path.join(BASE_DIR, 'ssdi.test.db.sqlite3')
 
 
 # Password validation
