@@ -1,7 +1,9 @@
 <html>
 <head>
     <title>{% block title %}Messenger Analytics{% endblock %}</title>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    {% load static %}
+
+    <link href="{% static "tailwind-output.css" %}" rel="stylesheet">
 </head>
 
 <body>

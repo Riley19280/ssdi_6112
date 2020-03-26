@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth import views
-
+from accounts import views as acct_views
 urlpatterns = [
     # https://github.com/django/django/blob/master/django/contrib/auth/urls.py
     path('login/', views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
@@ -14,5 +14,7 @@ urlpatterns = [
     path('password_reset/done/', views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    # end
 
+    path('register', acct_views.register, name='register')
 ]

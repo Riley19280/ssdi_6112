@@ -1,0 +1,31 @@
+{
+  "name": "ssdi_6112",
+  "version": "1.0.0",
+  "description": "#### Start docker     docker-compose up --build",
+  "main": "clean.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "faker": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "tailwindcss": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python3 manage.py runserver",
+    "migrate": "python3 manage.py migrate",
+    "tailwind": "npx tailwind build ./main/static/build.tailwind -o ./main/static/tailwind-output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Riley19280/ssdi_6112.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Riley19280/ssdi_6112/issues"
+  },
+  "homepage": "https://github.com/Riley19280/ssdi_6112#readme"
+}

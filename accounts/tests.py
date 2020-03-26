@@ -17,6 +17,7 @@ class UserLoginTestCase(TestCase):
     def test_valid_login(self):
         response = self.c.post('/login/', {'username': 'testuser', 'password': '12345'})
         self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.url, '/dashboard')
 
     def test_invalid_login(self):
         invalid_response = self.c.post('/login/', {'username': 'testuser', 'password': '123456'})
