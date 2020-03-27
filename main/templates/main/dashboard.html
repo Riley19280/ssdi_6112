@@ -1,13 +1,71 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-Login
+Dashboard
 {% endblock %}
 
 
 {% block body %}
-<div class="w-full max-w-xs mx-auto mt-20">
-    <p>Hi {{user.email}}!</p>
-    <p>Welcome to the dashboard</p>
-</div>
+
+	<table style="border-collapse: collapse; width: 100%;">
+		<caption style="color: white">Dashboard for {{user.username}}</caption>
+		
+		<tr style="background: yellow">
+			<th style="border: 2px solid #999; background: yellow">Chat Data With</th>
+			<th style="border: 2px solid #999; background: yellow">Date Uploaded</th>
+			<th style="border: 2px solid #999; background: yellow">Number of Chats</th>
+			<th style="border: 2px solid #999; background: yellow">Number of GIFs</th>
+			<th style="border: 2px solid #999; background: yellow">Number of 
+			Messages</th>
+			<th style="border: 2px solid #999; background: yellow">Average Message Length</th>
+		</tr>
+		
+		<tr style="background: white">
+			<td style="border: 2px solid #999; text-align: center">Mehmet</td>
+			<td style="border: 2px solid #999; text-align: center">03/03/2020</td>
+			<td style="border: 2px solid #999; text-align: center">5</td>
+			<td style="border: 2px solid #999; text-align: center">2</td>
+			<td style="border: 2px solid #999; text-align: center">3</td>
+			<td style="border: 2px solid #999; text-align: center">4</td>
+		</tr>
+		
+		<tr style="background: #ccc">
+			<td style="border: 2px solid #999; text-align: center">Ada</td>
+			<td style="border: 2px solid #999; text-align: center">11/11/2020</td>
+			<td style="border: 2px solid #999; text-align: center">11</td>
+			<td style="border: 2px solid #999; text-align: center">22</td>
+			<td style="border: 2px solid #999; text-align: center">33</td>
+			<td style="border: 2px solid #999; text-align: center">44</td>
+		</tr>
+		
+		<tr style="background: white">
+			<td style="border: 2px solid #999; text-align: center">Pinar</td>
+			<td style="border: 2px solid #999; text-align: center">7/71/2020</td>
+			<td style="border: 2px solid #999; text-align: center">55</td>
+			<td style="border: 2px solid #999; text-align: center">66</td>
+			<td style="border: 2px solid #999; text-align: center">77</td>
+			<td style="border: 2px solid #999; text-align: center">88</td>
+		</tr>
+		
+		<tr style="background: #ccc">
+			<td style="border: 2px solid #999; text-align: center">Deniz</td>
+			<td style="border: 2px solid #999; text-align: center">08/08/2020</td>
+			<td style="border: 2px solid #999; text-align: center">8</td>
+			<td style="border: 2px solid #999; text-align: center">9</td>
+			<td style="border: 2px solid #999; text-align: center">10</td>
+			<td style="border: 2px solid #999; text-align: center">20</td>
+		</tr>
+	
+	</table>
+
+	
+	<br/>
+	<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Instructions</button>
+	<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View Data</button>
+	<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload Data</button>
+	<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete Data</button>
+	<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Exit App</button>
+
 {% endblock %}
+
+	
