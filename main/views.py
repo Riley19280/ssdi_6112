@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def dashboard(request):
     return render(request, 'main/dashboard.html')
+
+
+def instructions(request):
+    return render(request, 'main/instructions.html')
