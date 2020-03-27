@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Instructions
+{% endblock %}
+
+
+{% block body %}
+<div class="w-full text-2xl font-bold max-w-xl mx-auto mt-10">
+    <h1 class="bg-indigo-400">Using Your Own Data </h1>
+</div>
+<div class="w-full max-w-xl mx-Auto mt-10">
+    <p class="mb-2">You can download your personal Facebook Messenger data  from <a class="text-indigo-500" href="https://www.facebook.com/settings?tab=your_facebook_information">here </a>.</p>
+
+    <p class="mb-2">Select "Download Your Information"</p>
+    <p class="mb-2">Change the format to "JSON", then click "Deselect All" on the right.</p>
+    <p class="mb-2">Scroll down and choose "Messages", this will only download the required data.</p>
+    <p class="mb-2">Scroll back up and press "Create File". Facebook will then begin processing your data request and send you an email when your data is ready to download.</p>
+    <p>Once you have download the .zip provided by Facebook, extract the contents to a folder. Within that folder, navigate to messages => inbox. This is where all of your current conversations are. You can choose the one you want here. Open the chosen folder and upload the message_1.json file.</p>
+</div>
+{% endblock %}
