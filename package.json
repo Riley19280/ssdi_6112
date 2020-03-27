@@ -13,7 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "python3 manage.py test",
     "start": "python3 manage.py runserver",
     "migrate": "python3 manage.py migrate",
     "tailwind": "npx tailwind build ./main/static/build.tailwind -o ./main/static/tailwind-output.css"
