@@ -9,3 +9,7 @@ def dashboard(request):
 
 def instructions(request):
     return render(request, 'main/instructions.html')
+
+
+def index(request):
+    return render(request, 'main/index.html')

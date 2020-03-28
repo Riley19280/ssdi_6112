@@ -17,8 +17,9 @@ def _static_butler(request, path, **kwargs):
 
 
 urlpatterns = [
+    re_path(r'static/(.+)', _static_butler),
     path('dashboard', views.dashboard, name='dashboard'),
     path('instructions', views.instructions, name='instructions'),
-    re_path(r'static/(.+)', _static_butler)
+    path('', views.index, name='index')
 ]
 

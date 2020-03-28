@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+
+{% block body %}
+<div class="w-full max-w-xs mx-auto mt-20">
+    <h2 class="text-xl underline pb-2">Links</h2>
+    <p class="text-gray-700 text-xs">*Note that if you are already logged in when trying to goo to the login page you will be redirected to the dashboard. if you are not logged in and try to go the the dashboard you will be redirected to the login*</p>
+    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'dashboard' %}">Dashboard</a>
+    <br>
+    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'login' %}">Login</a>
+    <br>
+    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'logout' %}">Logout</a>
+    <br>
+    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{% url 'instructions' %}">Instructions</a>
+</div>
+{% endblock %}
