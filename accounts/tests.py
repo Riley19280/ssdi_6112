@@ -6,6 +6,7 @@ from django.test import Client
 from accounts.models import User
 import html
 
+
 class UserLoginTestCase(TestCase):
     def setUp(self):
         self.c = Client()
