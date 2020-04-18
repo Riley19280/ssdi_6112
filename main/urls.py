@@ -20,6 +20,7 @@ urlpatterns = [
     re_path(r'static/(.+)', _static_butler),
     path('dashboard', views.dashboard, name='dashboard'),
     path('instructions', views.instructions, name='instructions'),
+    path('upload', views.upload, name='upload'),
     path('', views.index, name='index')
 ]
 

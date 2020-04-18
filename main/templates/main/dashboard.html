@@ -1,13 +1,87 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-Login
+Dashboard
 {% endblock %}
 
 
 {% block body %}
-<div class="w-full max-w-xs mx-auto mt-20">
+<div class="grid grid-cols-12 grid-rows-6 gap-6 w-screen h-screen p-4 bg-gray-100">
+    <div class="col-span-2 row-start-1 row-end-7">
+        <div id="sidebar" class="h-full w-full bg-gray-300 overflow-y-auto text-gray-800">
+            <div class="w-full p-2">
+                <div class="group" aria-expanded="true">
+                    <div class="header flex mt-1 mb-3 justify-between">
+                        <span class="uppercase tracking-wider leading-none">Datasets</span>
+                        <a href="{% url 'upload' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="add-dataset" class="w-4 cursor-pointer" viewBox="6 6 12 12">
+                                <path fill-rule="evenodd" d="M17 11a1 1 0 010 2h-4v4a1 1 0 01-2 0v-4H7a1 1 0 010-2h4V7a1 1 0 012 0v4h4z" class="inline-block w-4 h-4 text-gray-700 fill-current mr-2"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="content ml-6 mb-2">
+                        <div class="dataset-list">
+                            {% for d in datasets %}
+                            <div class="flex justify-between">
+                                <span>{{d.dataset_name}}</span>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" id="add-dataset" class="w-4 cursor-pointer" viewBox="6 6 12.12 12.12" data-delete-dataset-id="{{d.id}}">
+                                    <path fill-rule="evenodd" d="M15.78 14.36a1 1 0 01-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 11-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 011.42-1.42l2.83 2.83 2.82-2.83a1 1 0 011.42 1.42l-2.83 2.83 2.83 2.82z" class="inline-block w-4 h-4 text-red-500 fill-current mr-2"/>
+                                </svg>
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-span-10 row-start-1 row-end-2 flex flex-col">
     <p>Hi {{user.email}}!</p>
     <p>Welcome to the dashboard</p>
+    </div>
+
 </div>
+<div id="modal" class="modal h-1/2 w-1/2 bg-gray-400 rounded-lg text-center p-4 z-10 absolute top-0 left-0 transform translate-x-1/2 translate-y-1/2" style="display: none">
+    <div class="font-bold tracking-wider text-gray-800 h-1/12">
+        <h1 class="modal-title text-xl"></h1>
+        <svg viewBox="0 0 24 24" class="w-12 text-red-500 fill-current absolute top-0 right-0 hover:text-red-700" onclick="$('#modal').hide()">
+            <path d="M13.41 12l2.83 2.83a1 1 0 01-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 11-1.41-1.41L10.59 12 7.76 9.17a1 1 0 011.41-1.41L12 10.59l2.83-2.83a1 1 0 011.41 1.41L13.41 12z"></path>
+        </svg>
+        <hr>
+    </div>
+    <div class="modal-content h-11/12">
+    </div>
+</div>
+<script>
+    $('[data-delete-dataset-id]').click(function () {
+        let deleteIcon  = $(this)
+        let deleteId = $(this).data('delete-dataset-id')
+        $('.modal-title').text('Delete Dataset')
+        let p = $(`<p>Are you sure you want to delete dataset "<span class="text-red-500">${$(this).parent().text()}</span>"?</p>`)
+        let div = $(`<div class="w-full flex justify-between max-w-xs mx-auto mt-2"></div>`)
+        let buttonYes = $(`<button data-id="${deleteId}" class="py-1 px-2 bg-red-500 text-white hover:bg-red-600 focus:bg-red-700 focus:outline-none rounded rounded-md w-32">Yes</button>`)
+        let buttonNo = $(`<button onclick="$('#modal').hide()" class="py-1 px-2 bg-gray-300 text-gray-800 hover:bg-gray-100 focus:bg-gray-500 focus:outline-none rounded rounded-md w-32 border-md border-gray-600">No</button>`)
+
+        buttonYes.click(function () {
+            console.log('SET AJAX REQUEST TO DELETE DATASET')
+            // uncomment this when ajax request is completed
+            // deleteIcon.parent().remove()
+            $('#modal').hide()
+        })
+
+        div.append(buttonYes)
+        div.append(buttonNo)
+        $('.modal-content').append(p)
+        $('.modal-content').append(div)
+
+
+        $('#modal').show()
+    })
+
+    function deleteDataset(e) {
+        console.log(e)
+    }
+</script>
 {% endblock %}
