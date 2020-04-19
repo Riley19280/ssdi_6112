@@ -18,9 +18,11 @@ def _static_butler(request, path, **kwargs):
 
 urlpatterns = [
     re_path(r'static/(.+)', _static_butler),
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('', views.index, name='index'),
     path('instructions', views.instructions, name='instructions'),
+    path('dashboard', views.dashboard, name='dashboard'),
     path('upload', views.upload, name='upload'),
-    path('', views.index, name='index')
+    path('dataset/<int:dataset_id>', views.delete_dataset, name='delete_dataset'),
+    path('data/<str:dataset>/<str:file>', views.serve_graphs, name='serve_graphs')
 ]
 

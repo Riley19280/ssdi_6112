@@ -37,11 +37,31 @@ Dashboard
             </div>
         </div>
     </div>
-    <div class="col-span-10 row-start-1 row-end-2 flex flex-col">
-    <p>Hi {{user.email}}!</p>
-    <p>Welcome to the dashboard</p>
-    </div>
 
+    {% if not datasets %}
+        <div class="col-span-10 row-start-1 row-end-2 text-center">
+            You don't have any datasets uploaded. Upload one <a class="cursor-pointer hover:underline text-blue-800" href="{% url 'upload' %}">here</a>
+        </div>
+    {% else %}
+        <div class="col-span-5 row-start-1 row-end-3">
+            <img class="h-full w-full" src="/data/{{ datasets.0.dataset_name }}/message_count.svg">
+        </div>
+        <div class="col-span-5 row-start-1 row-end-3">
+            <img class="h-full w-full" src="/data/{{ datasets.0.dataset_name }}/active_days.svg">
+        </div>
+        <div class="col-span-5 row-start-3 row-end-5">
+            <img class="h-full w-full" src="/data/{{ datasets.0.dataset_name }}/join_counts.svg">
+        </div>
+        <div class="col-span-5 row-start-3 row-end-5">
+
+        </div>
+        <div class="col-span-5 row-start-5 row-end-7">
+            <img class="h-full w-full" src="/data/{{ datasets.0.dataset_name }}/gif_count.svg">
+        </div>
+        <div class="col-span-5 row-start-5 row-end-7">
+            <img class="h-full w-full" src="/data/{{ datasets.0.dataset_name }}/gif_to_msg_ratio.svg">
+        </div>
+    {% endif %}
 </div>
 <div id="modal" class="modal h-1/2 w-1/2 bg-gray-400 rounded-lg text-center p-4 z-10 absolute top-0 left-0 transform translate-x-1/2 translate-y-1/2" style="display: none">
     <div class="font-bold tracking-wider text-gray-800 h-1/12">
@@ -65,14 +85,25 @@ Dashboard
         let buttonNo = $(`<button onclick="$('#modal').hide()" class="py-1 px-2 bg-gray-300 text-gray-800 hover:bg-gray-100 focus:bg-gray-500 focus:outline-none rounded rounded-md w-32 border-md border-gray-600">No</button>`)
 
         buttonYes.click(function () {
-            console.log('SET AJAX REQUEST TO DELETE DATASET')
-            // uncomment this when ajax request is completed
-            // deleteIcon.parent().remove()
+            $.ajax({
+                method: "DELETE",
+                url: `/dataset/${$(this).attr('data-id')}`,
+                // data: { name: "John", location: "Boston" }
+            })
+            .fail(function(msg) {
+                console.log(msg)
+                alert(msg.statusText);
+            })
+            .done(function( msg ) {});
+
+
+            deleteIcon.parent().remove()
             $('#modal').hide()
         })
 
         div.append(buttonYes)
         div.append(buttonNo)
+        $('.modal-content').empty()
         $('.modal-content').append(p)
         $('.modal-content').append(div)
 
@@ -80,8 +111,5 @@ Dashboard
         $('#modal').show()
     })
 
-    function deleteDataset(e) {
-        console.log(e)
-    }
 </script>
 {% endblock %}
