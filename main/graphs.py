@@ -13,7 +13,7 @@ def generate_graphs(user, dataset_name, file_path):
     with open(file_path) as json_file:
         data = json.load(json_file)
         dataset = pd.DataFrame({
-            "name": [x['sender_name'] for x in data['messages']],
+            "name": [x['sender_name'] if 'sender_name' in x else 'no_name' for x in data['messages']],
             "timestamp": [x['timestamp_ms'] for x in data['messages']],
             "message": ['' if 'content' not in x else x['content'] for x in data['messages']],
             "type": [x['type'] for x in data['messages']],

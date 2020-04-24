@@ -81,4 +81,4 @@ for(let message of message_file.messages) {
             console.error(`message key not handled: ${message_key}`)
 }
 
-fs.outputJsonSync('./example_2_messages.json', message_file, { spaces: 4 })
+fs.outputJsonSync('./example_3_messages.json', message_file, { spaces: 4 })
