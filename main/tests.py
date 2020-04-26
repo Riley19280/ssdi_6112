@@ -21,7 +21,10 @@ class FileUploadTestCase(TestCase):
 
     def test_dataset_upload(self):
         path = os.path.join(settings.MEDIA_ROOT, 'graphs', str(self.user.id), 'test_dataset')
-        shutil.rmtree(path)
+        try:
+            shutil.rmtree(path)
+        except FileNotFoundError:
+            pass
         with open('example_3_messages.json') as fp:
             response = self.c.post('/upload', {'dataset_name': 'test_dataset', 'file': fp})
             self.assertEqual(response.status_code, 200)

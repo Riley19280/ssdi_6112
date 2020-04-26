@@ -327,3 +327,4 @@ $RECYCLE.BIN/
 node_modules
 media
 ssdi.test.db.sqlite3
+dump.sql
